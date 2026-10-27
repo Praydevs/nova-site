@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learn Nova — the full tutorial</title>
+<meta name="description" content="A complete, beginner-friendly tutorial for the Nova programming language: syntax, typed variables, conditions, loops, functions, collections, the maths engine, drawing, overlays, and building executables.">
+<link rel="icon" type="image/x-icon" href="nova.ico">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html"><img src="nova.ico" alt=""> Nova</a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="download.html">Download</a>
+      <a href="learn.html" class="active">Learn</a>
+      <a href="#reference">Docs</a>
+    </nav>
+    <a class="btn btn-primary btn-sm" href="download.html">Get Nova</a>
+  </div>
+</header>
+
+<section class="section" style="padding-bottom:24px;">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Tutorial · Nova 0.4</span>
+      <h2>Learn Nova</h2>
+      <p>Start at the top and work down. Every lesson is short, has runnable code, and builds on the one
+         before it. By the end you'll write a typed, drawing program and package it as an EXE.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="wrap docs">
+
+    <!-- ============ TOC ============ -->
+    <aside class="toc">
+      <div class="toc-title">Getting started</div>
+      <a href="#lesson-1">1. Your first program</a>
+      <a href="#lesson-2">2. Output with show</a>
+      <a href="#lesson-3">3. Variables, types &amp; inference</a>
+      <a href="#lesson-4">4. Numbers &amp; text</a>
+      <a href="#lesson-5">5. Booleans and nothing</a>
+      <div class="toc-title" style="margin-top:16px;">Control flow</div>
+      <a href="#lesson-6">6. Conditions: if</a>
+      <a href="#lesson-7">7. Loops: for &amp; while</a>
+      <a href="#lesson-8">8. break &amp; continue</a>
+      <a href="#lesson-9">9. Functions &amp; lambdas</a>
+      <div class="toc-title" style="margin-top:16px;">Data &amp; maths</div>
+      <a href="#lesson-10">10. Lists, maps &amp; sets</a>
+      <a href="#lesson-11">11. The maths library</a>
+      <a href="#lesson-12">12. Solving &amp; symbolic maths</a>
+      <div class="toc-title" style="margin-top:16px;">Graphics</div>
+      <a href="#lesson-13">13. Drawing on a canvas</a>
+      <a href="#lesson-14">14. Overlays</a>
+      <div class="toc-title" style="margin-top:16px;">Systems</div>
+      <a href="#lesson-15">15. Processes &amp; memory</a>
+      <a href="#lesson-16">16. Building an EXE</a>
+      <div class="toc-title" style="margin-top:16px;">Reference</div>
+      <a href="#reference">Cheat sheet</a>
+      <a href="#next">Where to go next</a>
+    </aside>
+
+    <!-- ============ LESSONS ============ -->
+    <div class="lessons">
+
+      <!-- 1 -->
+      <article class="lesson" id="lesson-1">
+        <div class="lesson-no">Lesson 1</div>
+        <h2>Your first program</h2>
+        <p>Nova programs live in files that end in <span class="mono">.nova</span>. You do <strong>not</strong>
+           wrap code in <span class="mono">def main()</span> or import anything — a Nova file runs from its
+           first line to its last.</p>
+        <p>Create a file called <span class="mono">main.nova</span> and type this:</p>
+        <div class="code">
+          <div class="code-head"><span class="dot"></span> main.nova</div>
+<pre><span class="k">show</span> <span class="s">"Hello, Nova!"</span></pre>
+        </div>
+        <div class="output">Hello, Nova!</div>
+        <p>Run it from the terminal, or by pressing <strong>Run</strong> in Nova Studio:</p>
+        <div class="code">
+          <div class="code-head"><span class="dot"></span> Command Prompt</div>
+<pre><span class="k">novac</span> main.nova</pre>
+        </div>
+        <div class="callout">
+          <strong><span class="mono">novac</span> is the Nova console.</strong> It runs any
+          <span class="mono">.nova</span> file; <span class="mono">nova</span> opens the Nova Studio IDE.
+        </div>
+      </article>
+
+      <!-- 2 -->
+      <article class="lesson" id="lesson-2">
+        <div class="lesson-no">Lesson 2</div>
+        <h2>Output with show</h2>
+        <p><span class="mono">show</span> prints a value. It takes any expression — a literal, a variable,
+           a calculation, or a function call.</p>
+        <div class="code">
+          <div class="code-head"><span class="dot"></span> main.nova</div>
+<pre><span class="k">show</span> <span class="s">"My name is Nova"</span>
+<span class="k">show</span> <span class="n">2</span> + <span class="n">3</span>
+<span class="k">show</span> <span class="s">"total: "</span> + <span class="k">str</span>(<span class="n">2</span> * <span class="n">5</span>)</pre>
+        </div>
+        <div class="output">My name is Nova
+5
+total: 10</div>
+        <p>Text joins with <span class="mono">+</span>. When one side is a number, convert it with
+           <span class="mono">str()</span> first — Nova does not silently mix text and numbers.</p>
+        <h3>Reading input</h3>
+        <p><span class="mono">input(prompt)</span> reads one line from the person using the program and
+           returns it as text. Interactive programs — a calculator, a menu, a form — all start here.</p>
+        <div class="code">
+          <div class="code-head"><span class="dot"></span> calculator.nova</div>
+<pre><span class="k">show</span> <span class="s">"Welcome to the Calculator!"</span>
+<span class="k">let</span> a = <span class="k">int</span>(<span class="k">input</span>(<span class="s">"First number: "</span>))
+<span class="k">let</span> b = <span class="k">int</span>(<span class="k">input</span>(<span class="s">"Second number: "</span>))
+<span class="k">show</span> <span class="s">"sum = "</span> + <span class="k">str</span>(a + b)</pre>
+        </div>
+        <div class="output">Welcome to the Calculator!
+First number: 6
+Second number: 7
+sum = 13</div>
+        <div class="callout">
+          <strong>Where the typing happens:</strong> in Nova Studio each <span class="mono">input()</span>
+          opens a small input dialog; under <span class="mono">novac</span> you type straight into the
+          terminal. Wrap the text in <span class="mono">int()</span> so the maths works.
+        </div>
+        <div class="callout">
+          <strong>Older code may say <span class="mono">print</span> or <span class="mono">say</span>.</strong>
+          Those still work for old examples, but <span class="mono">show</span> is the real Nova word. Use it
+          in new programs.
+        </div>
+      </article>
+
+      <!-- 3 -->
+      <article class="lesson" id="lesson-3">
+        <div class="lesson-no">Lesson 3</div>
+        <h2>Variables, types and inference</h2>
+        <p><span class="mono">let</span> creates a variable and gives it a value. Most of the time you write
+           no type at all — Nova infers it from the value. When the type matters, write it after a colon:
+           <span class="mono">Int</span>, <span class="mono">Float</span>, <span class="mono">String</span>,
+           <span class="mono">Bool</span>, <span class="mono">List&lt;T&gt;</span>,
+           <span class="mono">Map&lt;K, V&gt;</span>, <span class="mono">Set&lt;T&gt;</span> or
+           <span class="mono">Nothing</span>.</p>
+        <div class="code">
+          <div class="code-head"><span class="dot"></span> main.nova</div>
+<pre><span class="k">let</span> player = <span class="s">"Ace"</span>                <span class="c"># inferred: String</span>
+<span class="k">let</span> score: <span class="k">Int</span> = <span class="n">100</span>           <span class="c"># written on purpose</span>
+<span class="k">let</span> accuracy: <span class="k">Float</span> = <span class="n">98.5</span>
+<span class="k">let</span> active: <span class="k">Bool</span> = <span class="k">true</span>
+
+score = score + <span class="n">25</span>
+
+<span class="k">show</span> player + <span class="s">" scored "</span> + <span class="k">str</span>(score)
+<span class="k">show</span> <span class="s">"accuracy: "</span> + <span class="k">str</span>(accuracy)</pre>
+        </div>
+        <div class="output">Ace scored 125
+accuracy: 98.5</div>
+        <p>To change a variable you just assign to it again. A written type is a promise: Nova checks it
+           <em>before</em> the program runs, so this never gets the chance to go wrong:</p>
+        <div class="code">
+          <div class="code-head"><span class="dot"></span> main.nova</div>
+<pre><span class="k">let</span> score: <span class="k">Int</span> = <span class="s">"high"</span></pre>
+        </div>
+        <div class="output">main.nova:1:18: error: expected Int, found String
+
+  1 | let score: Int = "high"
+    |                  ^
+
+  hint: change the annotation, or assign a value of the annotated type</div>
+        <div class="callout">
+          <strong>Inferred variables stay flexible.</strong> A variable with no written type takes the type
+          of its value and can hold a different kind later; an annotated one keeps the type you promised,
+          and <span class="mono">score = "high"</span> on an <span class="mono">Int</span> is reported as an
+          error.
+        </div>
+      </article>
+
+      <!-- 4 -->
+      <article class="lesson" id="lesson-4">
+        <div class="lesson-no">Lesson 4</div>
+        <h2>Numbers, text and operators</h2>
+        <p>Nova handles numbers and text (called <em>strings</em>) natively.</p>
+        <div class="code">
+          <div class="code-head"><span class="dot"></span> operators</div>
+<pre><span class="c"># arithmetic</span>
+<span class="k">show</span> <span class="n">10</span> + <span class="n">4</span>      <span class="c"># 14</span>
+<span class="k">show</span> <span class="n">10</span> - <span class="n">4</span>      <span class="c"># 6</span>
+<span class="k">show</span> <span class="n">10</span> * <span class="n">4</span>      <span class="c"># 40</span>
+<span class="k">show</span> <span class="n">10</span> / <span class="n">4</span>      <span class="c"># 2.5</span>
+<span class="k">show</span> <span class="n">10</span> <span class="k">div</span> <span class="n">4</span>    <span class="c"># 2   whole-number division</span>
+<span class="k">show</span> <span class="n">10</span> <span class="k">mod</span> <span class="n">4</span>    <span class="c"># 2   remainder</span>
+<span class="k">show</span> <span class="n">2</span> ^ <span class="n">5</span>       <span class="c"># 32  power</span>
+
+<span class="c"># text</span>
+<span class="k">let</span> a = <span class="s">"Nova"</span>
+<span class="k">let</span> b = <span class="s">"Studio"</span>
+<span class="k">show</span> a + <span class="s">" "</span> + b   <span class="c"># Nova Studio</span>
+<span class="k">show</span> a.<span class="f">length</span>       <span class="c"># 4</span>
+<span class="k">show</span> a.<span class="f">upper</span>()      <span class="c"># NOVA</span>
+<span class="k">show</span> <span class="s">"a,b,c"</span>.<span class="f">split</span>(<span class="s">","</span>)   <span class="c"># [a, b, c]</span></pre>
+        </div>
+        <ul>
+          <li><span class="mono">div</span> divides and keeps only the whole number; <span class="mono">mod</span>
+              gives the remainder (handy for "every 3rd item" tests).</li>
+          <li><span class="mono">^</span> raises to a power — it is not XOR.</li>
+          <li>Convert with <span class="mono">str()</span>, <span class="mono">int()</span>,
+              <span class="mono">float()</span>, <span class="mono">round()</span>; measure with
+              <span class="mono">len()</span> or <span class="mono">.length</span>.</li>
+          <li>Text has members too: <span class="mono">upper</span>, <span class="mono">lower</span>,
+              <span class="mono">trim</span>, <span class="mono">split</span>,
+              <span class="mono">replace</span>, <span class="mono">contains</span>,
+              <span class="mono">starts_with</span>, <span class="mono">ends_with</span>,
+              <span class="mono">repeat</span>, <span class="mono">to_int</span>,
+              <span class="mono">to_float</span>.</li>
+        </ul>
+      </article>
+
+      <!-- 5 -->
+      <article class="lesson" id="lesson-5">
+        <div class="lesson-no">Lesson 5</div>
+        <h2>Booleans and nothing</h2>
+        <p>Two truth values — <span class="mono">true</span> and <span class="mono">false</span> — plus
+           <span class="mono">nothing</span>, which means "no value at all" (like an empty result).</p>
+        <div class="code">
+          <div class="code-head"><span class="dot"></span> main.nova</div>
+<pre><span class="k">let</span> ready = <span class="k">true</span>
+<span class="k">let</span> score = <span class="n">10</span>
+
+<span class="k">show</span> score &gt; <span class="n">5</span>        <span class="c"># true</span>
+<span class="k">show</span> score == <span class="n">10</span>      <span class="c"># true  (two equals signs!)</span>
+<span class="k">show</span> ready &amp;&amp; score &gt; <span class="n">5</span>   <span class="c"># true  (AND)</span>
+<span class="k">show</span> !ready            <span class="c"># false (NOT)</span>
+
+<span class="k">let</span> missing = <span class="k">nothing</span>
+<span class="k">show</span> missing</pre>
+        </div>
+        <div class="output">true
+true
+true
+false
+nothing</div>
+        <div class="callout warn">
+          <strong><span class="mono">=</span> assigns, <span class="mono">==</span> compares.</strong>
+          Writing <span class="mono">if score = 10</span> is a mistake — use
+          <span class="mono">==</span> to ask a question.
+        </div>
+        <p>Combine tests with <span class="mono">&amp;&amp;</span> (and), <span class="mono">||</span> (or)
+           and <span class="mono">!</span> (not).</p>
+
+        <h3>Values that might be nothing</h3>
+        <p>A type ending in <span class="mono">?</span> may hold <span class="mono">nothing</span>. Nova
+           makes you deal with that before using the value: give a fallback with
+           <span class="mono">??</span>, or check it first with <span class="mono">!= nothing</span>.</p>
+        <div class="code">
+          <div class="code-head"><span class="dot"></span> main.nova</div>
+<pre><span class="k">let</span> tag: <span class="k">String?</span> = <span class="k">nothing</span>
+
+<span class="k">show</span> tag ?? <span class="s">"untagged"</span>          <span class="c"># untagged</span>
+
+<span class="k">if</span> tag != <span class="k">nothing</span> {
+    <span class="k">show</span> tag.<span class="f">upper</span>()             <span class="c"># only runs when there is text</span>
+}</pre>
+        </div>
+        <div class="output">untagged</div>
+        <p>Using a nullable value directly is an error, not a surprise at runtime:
+           <span class="mono">show tag.length</span> reports <em>this value might be nothing</em> and suggests
+           both fixes.</p>
+      </article>
+
+      <!-- 6 -->
+      <article class="lesson" id="lesson-6">
+        <div class="lesson-no">Lesson 6</div>
+        <h2>Conditions with if / else if / else</h2>
+        <p><span class="mono">if</span> runs a block only if its condition is true.
+           <span class="mono">else if</span> tries another test, and <span class="mono">else</span> is the
+           fallback. Blocks use curly braces <span class="mono">{ }</span> — indentation is for readability,
+           not grammar.</p>
+        <div class="code">
+          <div class="code-head"><span class="dot"></span> main.nova</div>
+<pre><span class="k">let</span> health = <span class="n">45</span>
+
+<span class="k">if</span> health &gt; <span class="n">60</span> {
+    <span class="k">show</span> <span class="s">"healthy"</span>
+} <span class="k">else if</span> health &gt; <span class="n">30</span> {
+    <span class="k">show</span> <span class="s">"wounded"</span>
+} <span class="k">else</span> {
+    <span class="k">show</span> <span class="s">"critical"</span>
+}</pre>
+        </div>
+        <div class="output">wounded</div>
+        <p>Chain as many <span class="mono">else if</span> branches as you need, then finish with a plain
+           <span class="mono">else</span> if you want a default.</p>
+        <div class="callout">
+          <strong>Choosing between two values?</strong> A one-line ternary works too:
+          <span class="mono">let label = health &gt; 30 ? "alive" : "down"</span>.
+        </div>
+      </article>
+
+      <!-- 7 -->
+      <article class="lesson" id="lesson-7">
+        <div class="lesson-no">Lesson 7</div>
+        <h2>Loops: for and while</h2>
+        <p><span class="mono">for ... in ...</span> walks over a range, a list, a map or a piece of text.
+           <span class="mono">while</span> repeats until its condition turns false.</p>
+
+        <div class="code">
+          <div class="code-head"><span class="dot"></span> for over a range</div>
+<pre><span class="c"># 1..5 means 1, 2, 3, 4, 5 — both ends included</span>
+<span class="k">for</span> number <span class="k">in</span> <span class="n">1</span>..<span class="n">5</span> {
+    <span class="k">show</span> number
+}
+
+<span class="c"># a step lets you count by twos</span>
+<span class="k">for</span> even <span class="k">in</span> <span class="n">0</span>..<span class="n">6</span> <span class="k">step</span> <span class="n">2</span> {
+    <span class="k">show</span> even
+}</pre>
+        </div>
+        <div class="output">1
+2
+3
+4
+5
+0
+2
+4
+6</div>
+
+        <div class="code">
+          <div class="code-head"><span class="dot"></span> while</div>
+<pre><span class="k">let</span> count = <span class="n">0</span>
+<span class="k">while</span> count &lt; <span class="n">3</span> {
+    <span class="k">show</span> count
+    count = count + <span class="n">1</span>
+}</pre>
+        </div>
+        <div class="output">0
+1
+2</div>
+
+        <p><span class="mono">for</span> also walks collections, and a map hands out its names and values two
+           at a time:</p>
+        <div class="code">
+          <div class="code-head"><span class="dot"></span> walking data</div>
+<pre><span class="k">for</span> name <span class="k">in</span> [<span class="s">"Ace"</span>, <span class="s">"Nova"</span>] {
+    <span class="k">show</span> name
+}
+
+<span class="k">for</span> letter <span class="k">in</span> <span class="s">"Nova"</span> {
+    <span class="k">show</span> letter
+}
+
+<span class="k">let</span> scores = {<span class="s">"alex"</span>: <span class="n">10</span>, <span class="s">"sam"</span>: <span class="n">7</span>}
+<span class="k">for</span> name, points <span class="k">in</span> scores {
+    <span class="k">show</span> name + <span class="s">" -&gt; "</span> + <span class="k">str</span>(points)
+}</pre>
+        </div>
+        <div class="output">Ace
+Nova
+N
+o
+v
+a
+alex -&gt; 10
+sam -&gt; 7</div>
+
+        <div class="callout warn">
+          <strong>Always move toward the exit.</strong> If a <span class="mono">while</span> condition never
+          becomes false the loop runs forever. Nova caps how many iterations and statements it will execute
+          so a runaway program stops with an error instead of freezing your machine.
+        </div>
+      </article>
+
+      <!-- 8 -->
+      <article class="lesson" id="lesson-8">
+        <div class="lesson-no">Lesson 8</div>
+        <h2>break and continue</h2>
+        <p>Inside a loop, <span class="mono">break</span> leaves immediately and
+           <span class="mono">continue</span> jumps to the next turn.</p>
+        <div class="code">
+          <div class="code-head"><span class="dot"></span> main.nova</div>
+<pre><span class="k">for</span> n <span class="k">in</span> <span class="n">1</span>..<span class="n">10</span> {
+    <span class="k">if</span> n == <span class="n">4</span> {
+        <span class="k">continue</span>         <span class="c"># don't print 4</span>
+    }
+    <span class="k">if</span> n == <span class="n">7</span> {
+        <span class="k">break</span>            <span class="c"># leave the loop entirely</span>
+    }
+    <span class="k">show</span> n
+}</pre>
+        </div>
+        <div class="output">1
+2
+3
+5
+6</div>
+        <p>Using <span class="mono">break</span> or <span class="mono">continue</span> outside a loop is an
+           error — Nova will tell you so instead of doing something surprising. The older words
+           <span class="mono">stop</span> and <span class="mono">skip</span> mean the same two things.</p>
+      </article>
+
+      <!-- 9 -->
+      <article class="lesson" id="lesson-9">
+        <div class="lesson-no">Lesson 9</div>
+        <h2>Functions and lambdas</h2>
+        <p><span class="mono">fn</span> names a reusable block; <span class="mono">return</span> sends a value
+           back to the caller. Parameters and the result can carry types, and a parameter can have a
+           default.</p>
+        <div class="code">
+          <div class="code-head"><span class="dot"></span> main.nova</div>
+<pre><span class="k">fn</span> <span class="f">double</span>(value) {
+    <span class="k">return</span> value * <span class="n">2</span>
+}
+
+<span class="k">fn</span> <span class="f">grade</span>(score: <span class="k">Int</span>) -&gt; <span class="k">String</span> {
+    <span class="k">if</span> score &gt;= <span class="n">90</span> {
+        <span class="k">return</span> <span class="s">"A"</span>
+    }
+    <span class="k">return</span> <span class="s">"keep going"</span>
+}
+
+<span class="k">fn</span> <span class="f">greet</span>(name, greeting = <span class="s">"Hello"</span>) -&gt; <span class="k">String</span> {
+    <span class="k">return</span> greeting + <span class="s">", "</span> + name + <span class="s">"!"</span>
+}
+
+<span class="c"># a function may call itself</span>
+<span class="k">fn</span> <span class="f">fib</span>(n: <span class="k">Int</span>) -&gt; <span class="k">Int</span> {
+    <span class="k">if</span> n &lt; <span class="n">2</span> {
+        <span class="k">return</span> n
+    }
+    <span class="k">return</span> <span class="f">fib</span>(n - <span class="n">1</span>) + <span class="f">fib</span>(n - <span class="n">2</span>)
+}
+
+<span class="k">show</span> <span class="f">double</span>(<span class="n">21</span>)          <span class="c"># 42</span>
+<span class="k">show</span> <span class="f">grade</span>(<span class="n">95</span>)           <span class="c"># A</span>
+<span class="k">show</span> <span class="f">greet</span>(<span class="s">"Nova"</span>)        <span class="c"># Hello, Nova!</span>
+<span class="k">show</span> <span class="f">greet</span>(<span class="s">"Nova"</span>, <span class="s">"Hi"</span>) <span class="c"># Hi, Nova!</span>
+<span class="k">show</span> <span class="f">fib</span>(<span class="n">10</span>)             <span class="c"># 55</span></pre>
+        </div>
+        <div class="output">42
+A
+Hello, Nova!
+Hi, Nova!
+55</div>
+        <ul>
+          <li>A function with no <span class="mono">return</span> gives back
+              <span class="mono">nothing</span>.</li>
+          <li>Parameters are local — changing them inside does not change the caller's variable.</li>
+          <li>Define a function <em>before</em> you call it; passing the wrong number of arguments is
+              reported with the parameter names.</li>
+          <li><span class="mono">give</span> is the older word for <span class="mono">return</span> and still
+              works.</li>
+        </ul>
+
+        <h3>Short functions</h3>
+        <p>A one-line function is written with <span class="mono">=&gt;</span>. That is what
+           <span class="mono">filter</span>, <span class="mono">map</span> and
+           <span class="mono">sort</span> expect:</p>
+        <div class="code">
+          <div class="code-head"><span class="dot"></span> main.nova</div>
+<pre><span class="k">let</span> square = n =&gt; n * n
+<span class="k">show</span> <span class="f">square</span>(<span class="n">9</span>)                        <span class="c"># 81</span>
+
+<span class="k">show</span> [<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>].<span class="f">filter</span>(n =&gt; n &gt; <span class="n">2</span>)  <span class="c"># [3, 4]</span>
+<span class="k">show</span> [<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>].<span class="f">map</span>(n =&gt; n * <span class="n">2</span>)      <span class="c"># [2, 4, 6]</span></pre>
+        </div>
+        <div class="output">81
+[3, 4]
+[2, 4, 6]</div>
+      </article>
+
+      <!-- 10 -->
+      <article class="lesson" id="lesson-10">
+        <div class="lesson-no">Lesson 10</div>
+        <h2>Lists, maps and sets</h2>
+        <p>Keep several values together in a <strong>list</strong> (ordered, indexed from 0), look values up
+           by name in a <strong>map</strong>, or keep one of each value in a <strong>set</strong>.</p>
+        <div class="code">
+          <div class="code-head"><span class="dot"></span> lists</div>
+<pre><span class="k">let</span> players = [<span class="s">"Ace"</span>, <span class="s">"Nova"</span>, <span class="s">"Rex"</span>]
+players.<span class="f">push</span>(<span class="s">"Kit"</span>)
+
+<span class="k">show</span> players[<span class="n">0</span>]           <span class="c"># Ace</span>
+<span class="k">show</span> players[-<span class="n">1</span>]          <span class="c"># Kit   (from the end)</span>
+<span class="k">show</span> players.<span class="f">length</span>       <span class="c"># 4</span>
+<span class="k">show</span> players.<span class="f">first</span>        <span class="c"># Ace</span>
+<span class="k">show</span> players[<span class="n">1</span>:<span class="n">3</span>]         <span class="c"># [Nova, Rex]</span>
+<span class="k">show</span> players.<span class="f">contains</span>(<span class="s">"Rex"</span>)   <span class="c"># true</span>
+<span class="k">show</span> players.<span class="f">index_of</span>(<span class="s">"Nova"</span>)  <span class="c"># 1</span>
+<span class="k">show</span> players.<span class="f">join</span>(<span class="s">", "</span>)      <span class="c"># Ace, Nova, Rex, Kit</span></pre>
+        </div>
+        <div class="output">Ace
+Kit
+4
+Ace
+[Nova, Rex]
+true
+1
+Ace, Nova, Rex, Kit</div>
+
+        <div class="code">
+          <div class="code-head"><span class="dot"></span> working on a list</div>
+<pre><span class="k">let</span> numbers = [<span class="n">10</span>, <span class="n">20</span>, <span class="n">30</span>]
+numbers.<span class="f">push</span>(<span class="n">40</span>)
+
+<span class="k">show</span> numbers.<span class="f">filter</span>(n =&gt; n &gt; <span class="n">15</span>)              <span class="c"># [20, 30, 40]</span>
+<span class="k">show</span> numbers.<span class="f">map</span>(n =&gt; n * <span class="n">2</span>)                  <span class="c"># [20, 40, 60, 80]</span>
+<span class="k">show</span> numbers.<span class="f">reduce</span>((total, n) =&gt; total + n, <span class="n">0</span>) <span class="c"># 100</span>
+<span class="k">show</span> numbers.<span class="f">sum</span>()                            <span class="c"># 100</span>
+<span class="k">show</span> numbers.<span class="f">sort</span>()                           <span class="c"># [10, 20, 30, 40]</span>
+<span class="k">show</span> <span class="f">reversed</span>(numbers)                      <span class="c"># [40, 30, 20, 10]</span>
+<span class="k">show</span> numbers.<span class="f">unique</span>()                         <span class="c"># [10, 20, 30, 40]</span>
+<span class="k">show</span> [<span class="n">1</span>, <span class="n">2</span>] + [<span class="n">3</span>]                          <span class="c"># [1, 2, 3]</span></pre>
+        </div>
+        <div class="output">[20, 30, 40]
+[20, 40, 60, 80]
+100
+100
+[10, 20, 30, 40]
+[40, 30, 20, 10]
+[10, 20, 30, 40]
+[1, 2, 3]</div>
+
+        <div class="code">
+          <div class="code-head"><span class="dot"></span> maps and sets</div>
+<pre><span class="k">let</span> scores = {<span class="s">"alex"</span>: <span class="n">10</span>, <span class="s">"sam"</span>: <span class="n">7</span>}
+scores.<span class="f">set</span>(<span class="s">"kim"</span>, <span class="n">4</span>)
+
+<span class="k">show</span> scores[<span class="s">"alex"</span>]              <span class="c"># 10</span>
+<span class="k">show</span> scores.<span class="f">get</span>(<span class="s">"nobody"</span>, <span class="n">0</span>)      <span class="c"># 0    (no error)</span>
+<span class="k">show</span> scores.<span class="f">has</span>(<span class="s">"sam"</span>)            <span class="c"># true</span>
+<span class="k">show</span> scores.<span class="f">keys</span>                  <span class="c"># [alex, sam, kim]</span>
+
+<span class="k">let</span> tags = {<span class="s">"new"</span>, <span class="s">"old"</span>, <span class="s">"new"</span>}
+tags.<span class="f">add</span>(<span class="s">"sale"</span>)
+<span class="k">show</span> tags.<span class="f">length</span>                  <span class="c"># 3</span>
+<span class="k">show</span> tags.<span class="f">has</span>(<span class="s">"old"</span>)              <span class="c"># true</span></pre>
+        </div>
+        <div class="output">10
+0
+true
+[alex, sam, kim]
+3
+true</div>
+        <p>Everything is checked: reading past the end of a list, asking a map for a key that is not there,
+           or pushing text into a list of numbers is reported with the line and a hint rather than quietly
+           returning junk.</p>
+      </article>
+
+      <!-- 11 -->
+      <article class="lesson" id="lesson-11">
+        <div class="lesson-no">Lesson 11</div>
+        <h2>The maths library</h2>
+        <p>Mathematics ships with the language as <span class="mono">math</span>. Statistics, rounding,
+           powers, trigonometry, logarithms, integers and matrices are all there — no imports, no packages.</p>
+        <div class="code">
+          <div class="code-head"><span class="dot"></span> statistics</div>
+<pre><span class="k">let</span> values = [<span class="n">4</span>, <span class="n">8</span>, <span class="n">12</span>, <span class="n">16</span>]
+
+<span class="k">show</span> math.<span class="f">mean</span>(values)       <span class="c"># 10</span>
+<span class="k">show</span> math.<span class="f">median</span>(values)     <span class="c"># 10</span>
+<span class="k">show</span> math.<span class="f">mode</span>([<span class="n">1</span>, <span class="n">1</span>, <span class="n">2</span>, <span class="n">2</span>]) <span class="c"># [1, 2]</span>
+<span class="k">show</span> math.<span class="f">variance</span>(values)   <span class="c"># 20</span>
+<span class="k">show</span> math.<span class="f">stddev</span>(values)     <span class="c"># 4.472135955</span>
+<span class="k">show</span> math.<span class="f">spread</span>([<span class="n">4</span>, <span class="n">8</span>, <span class="n">12</span>]) <span class="c"># 8</span></pre>
+        </div>
+        <div class="output">10
+10
+[1, 2]
+20
+4.472135955
+8</div>
+
+        <div class="code">
+          <div class="code-head"><span class="dot"></span> numbers and angles</div>
+<pre><span class="k">show</span> math.<span class="f">sqrt</span>(<span class="n">144</span>)        <span class="c"># 12</span>
+<span class="k">show</span> math.<span class="f">factorial</span>(<span class="n">6</span>)     <span class="c"># 720</span>
+<span class="k">show</span> math.<span class="f">gcd</span>(<span class="n">48</span>, <span class="n">180</span>)      <span class="c"># 12</span>
+<span class="k">show</span> math.<span class="f">lcm</span>(<span class="n">4</span>, <span class="n">6</span>)         <span class="c"># 12</span>
+<span class="k">show</span> math.<span class="f">is_prime</span>(<span class="n">97</span>)      <span class="c"># true</span>
+<span class="k">show</span> math.<span class="f">fibonacci</span>(<span class="n">10</span>)    <span class="c"># 55</span>
+<span class="k">show</span> math.<span class="f">clamp</span>(<span class="n">15</span>, <span class="n">0</span>, <span class="n">10</span>)   <span class="c"># 10</span>
+<span class="k">show</span> math.<span class="f">round</span>(<span class="n">2.567</span>, <span class="n">2</span>)   <span class="c"># 2.57</span>
+<span class="k">show</span> math.<span class="f">sin</span>(math.<span class="f">pi</span> / <span class="n">2</span>)   <span class="c"># 1</span>
+<span class="k">show</span> math.<span class="f">log10</span>(<span class="n">1000</span>)      <span class="c"># 3</span>
+<span class="k">show</span> math.<span class="f">degrees</span>(math.<span class="f">pi</span>) <span class="c"># 180</span></pre>
+        </div>
+        <div class="output">12
+720
+12
+12
+true
+55
+10
+2.57
+1
+3
+180</div>
+
+        <div class="code">
+          <div class="code-head"><span class="dot"></span> matrices and vectors</div>
+<pre><span class="k">let</span> a = [[<span class="n">1</span>, <span class="n">2</span>], [<span class="n">3</span>, <span class="n">4</span>]]
+<span class="k">let</span> b = [[<span class="n">5</span>, <span class="n">6</span>], [<span class="n">7</span>, <span class="n">8</span>]]
+
+<span class="k">show</span> math.<span class="f">matmul</span>(a, b)          <span class="c"># [[19, 22], [43, 50]]</span>
+<span class="k">show</span> math.<span class="f">transpose</span>(a)          <span class="c"># [[1, 3], [2, 4]]</span>
+<span class="k">show</span> math.<span class="f">determinant</span>(a)        <span class="c"># -2</span>
+<span class="k">show</span> math.<span class="f">dot</span>([<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>], [<span class="n">4</span>, <span class="n">5</span>, <span class="n">6</span>]) <span class="c"># 32</span>
+<span class="k">show</span> math.<span class="f">cross</span>([<span class="n">1</span>, <span class="n">0</span>, <span class="n">0</span>], [<span class="n">0</span>, <span class="n">1</span>, <span class="n">0</span>]) <span class="c"># [0, 0, 1]</span>
+<span class="k">show</span> math.<span class="f">norm</span>([<span class="n">3</span>, <span class="n">4</span>])           <span class="c"># 5</span></pre>
+        </div>
+        <div class="output">[[19, 22], [43, 50]]
+[[1, 3], [2, 4]]
+-2
+32
+[0, 0, 1]
+5</div>
+      </article>
+
+      <!-- 12 -->
+      <article class="lesson" id="lesson-12">
+        <div class="lesson-no">Lesson 12</div>
+        <h2>Solving and symbolic maths</h2>
+        <p>The <span class="mono">solve</span> keyword solves an equation with one unknown, right inside your
+           program. Use it as a statement to print the answer, or as an expression to keep the value.</p>
+        <div class="code">
+          <div class="code-head"><span class="dot"></span> main.nova</div>
+<pre><span class="k">solve</span> <span class="n">2</span>*x + <span class="n">4</span> = <span class="n">14</span>
+<span class="k">solve</span> x^<span class="n">2</span> = <span class="n">9</span>
+
+<span class="k">let</span> x = <span class="k">solve</span>(<span class="n">3</span>*x + <span class="n">9</span> == <span class="n">24</span>)
+<span class="k">show</span> x                       <span class="c"># 5</span>
+
+<span class="k">let</span> price = <span class="n">9</span>                <span class="c"># names in the program are known values</span>
+<span class="k">let</span> y = <span class="k">solve</span>(<span class="n">3</span>*y + price == <span class="n">24</span>)
+<span class="k">show</span> y                       <span class="c"># 5</span></pre>
+        </div>
+        <div class="output">x = 5
+x = -3 or x = 3
+5
+5</div>
+
+        <h3>Expressions as text</h3>
+        <p><span class="mono">math.simplify</span>, <span class="mono">derivative</span>,
+           <span class="mono">antiderivative</span> and <span class="mono">integral</span> take maths written
+           as text and work on it exactly, using fractions — <span class="mono">2*x + 3*x</span> really is
+           <span class="mono">5*x</span>, not <span class="mono">5.0*x</span>.</p>
+        <div class="code">
+          <div class="code-head"><span class="dot"></span> symbolic.nova</div>
+<pre><span class="k">show</span> math.<span class="f">simplify</span>(<span class="s">"2*x + 3*x"</span>)        <span class="c"># 5*x</span>
+<span class="k">show</span> math.<span class="f">simplify</span>(<span class="s">"(x + 1)^2"</span>)        <span class="c"># x^2 + 2*x + 1</span>
+<span class="k">show</span> math.<span class="f">derivative</span>(<span class="s">"x^3 + 2*x"</span>, <span class="s">"x"</span>) <span class="c"># 3*x^2 + 2</span>
+<span class="k">show</span> math.<span class="f">antiderivative</span>(<span class="s">"x^2"</span>, <span class="s">"x"</span>)  <span class="c"># (1/3)*x^3</span>
+<span class="k">show</span> math.<span class="f">evaluate</span>(<span class="s">"2*x + 1"</span>, {<span class="s">"x"</span>: <span class="n">3</span>}) <span class="c"># 7</span>
+
+<span class="k">show</span> math.<span class="f">integral</span>(<span class="s">"x^2"</span>, <span class="n">0</span>, <span class="n">3</span>)       <span class="c"># 9     exact for polynomials</span>
+<span class="k">show</span> math.<span class="f">integral</span>(<span class="s">"sin(x)"</span>, <span class="n">0</span>, math.<span class="f">pi</span>) <span class="c"># 2 (numerical: Simpson's rule)</span>
+<span class="k">show</span> math.<span class="f">derivative_at</span>(<span class="s">"x^2"</span>, <span class="s">"x"</span>, <span class="n">3</span>)   <span class="c"># 6</span>
+
+<span class="k">show</span> math.<span class="f">solve</span>(<span class="s">"x^2 = 9"</span>)              <span class="c"># [-3, 3]</span>
+<span class="k">show</span> math.<span class="f">solve_system</span>([<span class="s">"x + y = 3"</span>, <span class="s">"x - y = 1"</span>]) <span class="c"># {x: 2, y: 1}</span></pre>
+        </div>
+        <div class="output">5*x
+x^2 + 2*x + 1
+3*x^2 + 2
+(1/3)*x^3
+7
+9
+2
+6
+[-3, 3]
+{x: 2, y: 1}</div>
+        <ul>
+          <li>Linear and quadratic equations with one unknown are solved exactly; quadratics return both
+              real roots, or <span class="mono">nothing</span> when there are none.</li>
+          <li><span class="mono">math.solve_system</span> solves linear systems and returns a map of the
+              answers.</li>
+          <li>Integrals and slopes are exact for polynomials and numeric otherwise; <span class="mono">sin</span>,
+              <span class="mono">cos</span> and <span class="mono">pi</span> are available inside the text.</li>
+        </ul>
+      </article>
+
+      <!-- 13 -->
+      <article class="lesson" id="lesson-13">
+        <div class="lesson-no">Lesson 13</div>
+        <h2>Drawing on a canvas</h2>
+        <p>Nova can open a window and draw into it. Call <span class="mono">canvas()</span> first, draw as
+           much as you like, then <span class="mono">present()</span> to show the result.</p>
+        <div class="code">
+          <div class="code-head"><span class="dot"></span> picture.nova</div>
+<pre><span class="k">canvas</span>(<span class="n">500</span>, <span class="n">300</span>, <span class="s">"My picture"</span>)
+
+<span class="k">rect</span>(<span class="n">20</span>, <span class="n">20</span>, <span class="n">160</span>, <span class="n">90</span>, <span class="s">"#4f9dff"</span>)
+<span class="k">circle</span>(<span class="n">300</span>, <span class="n">150</span>, <span class="n">55</span>, <span class="s">"#3ddc97"</span>)
+<span class="k">line</span>(<span class="n">20</span>, <span class="n">250</span>, <span class="n">480</span>, <span class="n">250</span>, <span class="s">"#ffc861"</span>, <span class="n">3</span>)
+<span class="k">draw_text</span>(<span class="n">28</span>, <span class="n">44</span>, <span class="s">"Hello, Nova"</span>, <span class="s">"white"</span>, <span class="n">24</span>)
+
+<span class="k">present</span>()</pre>
+        </div>
+        <p>Shapes take <span class="mono">x</span>, <span class="mono">y</span>, a size, and a colour —
+           a hex value like <span class="mono">#4f9dff</span> or a name like <span class="mono">"red"</span>.
+           Press <strong>Escape</strong> to close the window.</p>
+        <p>Drawing is ordinary Nova, so the maths engine comes along for free:</p>
+        <div class="code">
+          <div class="code-head"><span class="dot"></span> curve.nova</div>
+<pre><span class="k">canvas</span>(<span class="n">600</span>, <span class="n">200</span>, <span class="s">"Sine wave"</span>)
+
+<span class="k">for</span> x <span class="k">in</span> <span class="n">0</span>..<span class="n">600</span> <span class="k">step</span> <span class="n">4</span> {
+    <span class="k">let</span> y = <span class="n">100</span> + <span class="n">80</span> * math.<span class="f">sin</span>(x / <span class="n">40</span>)
+    <span class="k">circle</span>(x, y, <span class="n">2</span>, <span class="s">"#3ddc97"</span>)
+}
+
+<span class="k">present</span>()</pre>
+        </div>
+        <div class="callout">
+          <strong>Drawing needs a real desktop.</strong> Tkinter must be available and there must be a screen
+          to draw on, so this will not work over SSH or in a headless session.
+        </div>
+      </article>
+
+      <!-- 14 -->
+      <article class="lesson" id="lesson-14">
+        <div class="lesson-no">Lesson 14</div>
+        <h2>Overlays</h2>
+        <p>An <span class="mono">overlay()</span> window is frameless, always on top, and colour-keyed to full
+           transparency — so only what you draw shows, floating over whatever is beneath it. Combined with
+           <span class="mono">refresh()</span> it becomes a live loop.</p>
+        <div class="code">
+          <div class="code-head"><span class="dot"></span> loop.nova</div>
+<pre><span class="k">overlay</span>(<span class="n">400</span>, <span class="n">200</span>, <span class="n">40</span>, <span class="n">40</span>, <span class="n">0.8</span>, <span class="s">"HUD"</span>)
+
+<span class="k">while</span> <span class="k">true</span> {
+    <span class="k">clear_canvas</span>()
+    <span class="k">rect</span>(<span class="n">20</span>, <span class="n">20</span>, <span class="n">120</span>, <span class="n">40</span>, <span class="s">"#3ddc97"</span>, <span class="k">false</span>)
+    <span class="k">draw_text</span>(<span class="n">30</span>, <span class="n">32</span>, <span class="s">"live"</span>, <span class="s">"white"</span>, <span class="n">18</span>)
+    <span class="k">refresh</span>(<span class="n">20</span>)          <span class="c"># keep it alive ~20ms per frame</span>
+}</pre>
+        </div>
+        <ul>
+          <li><span class="mono">refresh(ms)</span> keeps the window alive and returns
+              <span class="mono">false</span> once it has been closed — use that to break the loop.</li>
+          <li><span class="mono">click_through()</span> makes the overlay ignore the mouse, so it never blocks
+              the window underneath.</li>
+          <li><span class="mono">rect(..., false)</span> draws an unfilled outline instead of a solid block.</li>
+          <li><span class="mono">move_overlay(x, y)</span> repositions it and
+              <span class="mono">hide_overlay()</span> hides it.</li>
+          <li><span class="mono">window_bounds(pid)</span> returns
+              <span class="mono">[x, y, width, height]</span> so you can line the overlay up exactly over
+              another program's window.</li>
+        </ul>
+        <div class="callout">
+          <strong>The pattern is always:</strong> draw → <span class="mono">refresh(20)</span> → repeat,
+          and stop when <span class="mono">refresh()</span> returns <span class="mono">false</span>.
+        </div>
+      </article>
+
+      <!-- 15 -->
+      <article class="lesson" id="lesson-15">
+        <div class="lesson-no">Lesson 15</div>
+        <h2>Processes and memory</h2>
+        <p>Nova can find a running program and read from it. The single most useful function is
+           <span class="mono">pid()</span>, which returns the process ID of a running executable.</p>
+
+        <div class="callout warn">
+          <strong>What a PID is.</strong> A PID is the number Windows gives a running process — it is
+          <em>not</em> a memory address. To get one, start the program first, then look it up. You can also
+          see PIDs in Task Manager → Details.
+        </div>
+
+        <div class="code">
+          <div class="code-head"><span class="dot"></span> main.nova</div>
+<pre><span class="c"># first matching process</span>
+<span class="k">show</span> <span class="f">pid</span>(<span class="s">"RobloxPlayerBeta.exe"</span>)
+
+<span class="c"># every matching process, as a list</span>
+<span class="k">show</span> <span class="f">pids</span>(<span class="s">"chrome.exe"</span>)
+
+<span class="c"># where the program was loaded in memory</span>
+<span class="k">let</span> id = <span class="f">pid</span>(<span class="s">"notepad.exe"</span>)
+<span class="k">show</span> <span class="f">module_base</span>(id)</pre>
+        </div>
+        <div class="output">10712
+[4820, 9134]
+140735218601984</div>
+
+        <p>The read helpers are all <strong>read-only</strong> and inherit your operating system's
+           permissions:</p>
+        <ul>
+          <li><span class="mono">read_memory(pid, address, count)</span> — 1 to 4096 bytes, returned as numbers
+              0–255.</li>
+          <li><span class="mono">read_pointer(pid, address)</span> — 8 bytes as one whole number.</li>
+          <li><span class="mono">read_float(pid, address)</span> — 4 bytes as a decimal number.</li>
+          <li><span class="mono">read_text(pid, address, count)</span> — up to <span class="mono">count</span>
+              bytes of text, stopping at the first NUL.</li>
+          <li><span class="mono">read_pointers(pid, address, count)</span> and
+              <span class="mono">read_floats(pid, address, count)</span> — many values in one read, which is
+              what keeps a live overlay's frame time down.</li>
+          <li><span class="mono">module_base(pid)</span> — the load address of the main executable, or of a named
+              module such as <span class="mono">ntdll.dll</span>.</li>
+        </ul>
+
+        <div class="callout warn">
+          <strong>Read only what you own or are permitted to inspect.</strong> Pass the PID as
+          <span class="mono">pid</span> and the address as <span class="mono">address</span> — they are
+          different arguments. These builtins work on Windows and Linux and are rejected by the compiler, so
+          run such programs with <span class="mono">novac yourfile.nova</span>. Nova never writes to
+          another process's memory.
+        </div>
+
+        <p>A few more useful builtins: <span class="mono">abort(msg)</span> stops with an error message and
+           exit status 1, <span class="mono">sleep(seconds)</span> pauses for up to 60 seconds, and
+           <span class="mono">tan(radians)</span> is there for projection maths.</p>
+      </article>
+
+      <!-- 16 -->
+      <article class="lesson" id="lesson-16">
+        <div class="lesson-no">Lesson 16</div>
+        <h2>Building a standalone EXE</h2>
+        <p>Turn a Nova program into a single <span class="mono">.exe</span> that runs on a machine with
+           nothing else installed.</p>
+
+        <p><strong>The easy way</strong> — inside Nova Studio, press <strong>Build EXE</strong>, choose where
+           to save, and the IDE handles the packaging.</p>
+
+        <p><strong>What Build EXE does</strong> — it checks your source first and reports any Nova errors
+           with line numbers, then produces a single self-contained executable in the location you chose.
+           Double-click it like any other Windows program.</p>
+
+        <div class="callout warn">
+          <strong>Not every program can be compiled.</strong> The compiler deliberately refuses the process
+          and memory builtins. Programs that use <span class="mono">pid()</span>,
+          <span class="mono">read_memory()</span> and friends run with
+          <span class="mono">novac yourfile.nova</span> instead — those helpers are available there and not
+          in compiled output, on purpose.
+        </div>
+      </article>
+
+      <!-- ============ REFERENCE ============ -->
+      <article class="lesson" id="reference">
+        <div class="lesson-no">Reference</div>
+        <h2>Nova cheat sheet</h2>
+        <p>Everything in one place, grouped by what it does.</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Task</th><th>Syntax</th></tr></thead>
+            <tbody>
+              <tr><td>Create a variable</td><td class="mono">let score = 10</td></tr>
+              <tr><td>Write the type</td><td class="mono">let score: Int = 10</td></tr>
+              <tr><td>May be nothing</td><td class="mono">let tag: String? = nothing</td></tr>
+              <tr><td>Fallback when nothing</td><td class="mono">tag ?? "untagged"</td></tr>
+              <tr><td>Chosen between two values</td><td class="mono">age &gt;= 18 ? "adult" : "child"</td></tr>
+              <tr><td>Print a value</td><td class="mono">show score</td></tr>
+              <tr><td>Read a line of input</td><td class="mono">input("prompt")</td></tr>
+              <tr><td>Condition</td><td class="mono">if score &gt; 5 { ... } else if ... else { ... }</td></tr>
+              <tr><td>Loop over a range</td><td class="mono">for n in 1..5 { ... }</td></tr>
+              <tr><td>Loop with a step</td><td class="mono">for n in 0..10 step 2 { ... }</td></tr>
+              <tr><td>Loop until false</td><td class="mono">while condition { ... }</td></tr>
+              <tr><td>Lockstep over a map</td><td class="mono">for key, value in scores { ... }</td></tr>
+              <tr><td>Leave a loop</td><td class="mono">break</td></tr>
+              <tr><td>Skip to next turn</td><td class="mono">continue</td></tr>
+              <tr><td>Define a function</td><td class="mono">fn name(arg: Int) -&gt; Int { return arg * 2 }</td></tr>
+              <tr><td>Default parameter</td><td class="mono">fn greet(name, greeting = "Hello") { ... }</td></tr>
+              <tr><td>One-line function</td><td class="mono">let twice = n =&gt; n * 2</td></tr>
+              <tr><td>Boolean logic</td><td class="mono">&amp;&amp; || ! true false</td></tr>
+              <tr><td>Maths</td><td class="mono">+ - * / div mod % ^ //</td></tr>
+              <tr><td>List</td><td class="mono">[10, 20, 30]</td></tr>
+              <tr><td>List members</td><td class="mono">.push .pop .length .first .last .sort .reverse .filter .map .reduce .join .slice .unique .contains .index_of</td></tr>
+              <tr><td>Map</td><td class="mono">{"alex": 10} with .get .has .set .keys .values .items</td></tr>
+              <tr><td>Set</td><td class="mono">{"new", "old"} with .add .has .values</td></tr>
+              <tr><td>Text members</td><td class="mono">.upper .lower .trim .split .replace .contains .repeat .to_int .to_float</td></tr>
+              <tr><td>Statistics</td><td class="mono">math.mean median mode variance stddev spread</td></tr>
+              <tr><td>Numbers</td><td class="mono">math.sqrt factorial gcd lcm is_prime clamp round</td></tr>
+              <tr><td>Angles</td><td class="mono">math.sin cos tan pi degrees radians</td></tr>
+              <tr><td>Matrices</td><td class="mono">math.matmul transpose determinant dot cross norm</td></tr>
+              <tr><td>Solve an equation</td><td class="mono">solve 2*x + 4 = 14</td></tr>
+              <tr><td>Keep the answer</td><td class="mono">let x = solve(3*x + 9 == 24)</td></tr>
+              <tr><td>Simplify / differentiate</td><td class="mono">math.simplify("2*x + 3*x")</td></tr>
+              <tr><td>Integrate</td><td class="mono">math.integral("x^2", 0, 3)</td></tr>
+              <tr><td>No value</td><td class="mono">nothing</td></tr>
+              <tr><td>Open a window</td><td class="mono">canvas(w, h, title)</td></tr>
+              <tr><td>Draw</td><td class="mono">rect circle line draw_text</td></tr>
+              <tr><td>Show the window</td><td class="mono">present()</td></tr>
+              <tr><td>Transparent overlay</td><td class="mono">overlay(w, h, x, y, opacity, title)</td></tr>
+              <tr><td>Live overlay frame</td><td class="mono">clear_canvas() ... refresh(20)</td></tr>
+              <tr><td>Ignore the mouse</td><td class="mono">click_through()</td></tr>
+              <tr><td>Find a process</td><td class="mono">pid("app.exe") / pids("app.exe")</td></tr>
+              <tr><td>Read memory</td><td class="mono">read_memory(pid, address, count)</td></tr>
+              <tr><td>Module load address</td><td class="mono">module_base(pid)</td></tr>
+              <tr><td>Stop with an error</td><td class="mono">abort("message")</td></tr>
+              <tr><td>Pause</td><td class="mono">sleep(seconds)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout" style="margin-top:22px;">
+          <strong>Legacy words still accepted:</strong> <span class="mono">set</span> for
+          <span class="mono">let</span>, <span class="mono">when</span> for <span class="mono">if</span>,
+          <span class="mono">otherwise</span> for <span class="mono">else</span>,
+          <span class="mono">each</span> for <span class="mono">for</span>,
+          <span class="mono">give</span> for <span class="mono">return</span>,
+          <span class="mono">stop</span> / <span class="mono">skip</span> for
+          <span class="mono">break</span> / <span class="mono">continue</span>,
+          <span class="mono">print</span> / <span class="mono">say</span> for
+          <span class="mono">show</span>, and the indentation-plus-colon form. They work in old examples but
+          are not needed in new programs.
+        </div>
+      </article>
+
+      <!-- ============ NEXT ============ -->
+      <article class="lesson" id="next">
+        <div class="lesson-no">Next steps</div>
+        <h2>Where to go next</h2>
+        <p>You've covered the whole language. Here's how to keep going:</p>
+        <ul>
+          <li><strong>Read the errors.</strong> Every mistake names the file, the line and the column, shows
+              the source under a caret, and usually suggests the fix — including
+              <span class="mono">did you mean 'push'?</span> and <span class="mono">did you mean 'score'?</span></li>
+          <li><strong>Create a solution.</strong> In Nova Studio choose <em>New Solution</em>, pick a parent
+              folder, name it, and select a base, print-to-world, or empty starter project.</li>
+          <li><strong>Use the assistant.</strong> Nova Assist on the right can explain errors, propose edits
+              (reviewed as a diff before they're saved) and suggest commands for you to approve.</li>
+          <li><strong>Open a folder you already have.</strong> <em>Open Folder</em> reads a
+              <span class="mono">.nova-solution</span> manifest if one is present and opens
+              <span class="mono">main.nova</span>.</li>
+          <li><strong>Read the source.</strong> <span class="mono">tour.nova</span> is a guided tour of the
+              language that doubles as a smoke test, <span class="mono">hello.nova</span> is a short working
+              example, and <span class="mono">roblox.nova</span> is a complete program that combines process
+              lookups, drawing and a live overlay.</li>
+        </ul>
+
+        <div class="cta-band" style="margin-top:30px;padding:38px 28px;">
+          <h2 style="font-size:1.6rem;">Ready to build?</h2>
+          <p>Grab the installer and open Nova Studio.</p>
+          <a class="btn btn-primary" href="download.html">Download Nova v0.4</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html"><img src="nova.ico" alt=""> Nova</a>
+        <p>A small programming language with its own syntax, a type checker, a maths engine,
+           a compiler, and the Nova Studio desktop IDE.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Get Nova</h4>
+        <a href="download.html">Download</a>
+        <a href="download.html#versions">All versions</a>
+        <a href="download.html#ide">Install the IDE</a>
+        <a href="download.html#source">Command line</a>
+      </div>
+      <div class="footer-col">
+        <h4>Learn</h4>
+        <a href="#lesson-1">Getting started</a>
+        <a href="#lesson-13">Drawing</a>
+        <a href="#lesson-15">Processes</a>
+        <a href="#reference">Cheat sheet</a>
+      </div>
+      <div class="footer-col">
+        <h4>Project</h4>
+        <a href="index.html">Home</a>
+        <a href="download.html#requirements">Requirements</a>
+        <a href="download.html#verify">Verify install</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Nova. Built for people learning to program.</span>
+      <span class="mono">Nova v0.4</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Highlight the current lesson in the sidebar as you scroll.
+  const links = [...document.querySelectorAll('.toc a[href^="#"]')];
+  const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+  const targets = [...document.querySelectorAll('.lesson[id]')];
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      links.forEach(a => a.classList.remove('active'));
+      const link = map.get(entry.target.id);
+      if (link) link.classList.add('active');
+    });
+  }, { rootMargin: '-80px 0px -70% 0px', threshold: 0 });
+
+  targets.forEach(t => observer.observe(t));
+</script>
+
+</body>
+</html>

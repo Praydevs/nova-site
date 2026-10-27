@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Download Nova — v0.4 installer, IDE & console</title>
+<meta name="description" content="Download Nova v0.4: the Windows installer, the Nova Studio IDE, or the console interpreter. Downloads are served from the Nova server, plus every version and step-by-step install instructions.">
+<link rel="icon" type="image/x-icon" href="nova.ico">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html"><img src="nova.ico" alt=""> Nova</a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="download.html" class="active">Download</a>
+      <a href="learn.html">Learn</a>
+      <a href="learn.html#reference">Docs</a>
+    </nav>
+    <a class="btn btn-primary btn-sm" href="#files">Get Nova</a>
+  </div>
+</header>
+
+<section class="section" style="padding-top:56px;">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Release 0.4</span>
+      <h2>Download Nova</h2>
+      <p>One installer gives you the language, the console interpreter, and the Nova Studio IDE.
+         Everything below is free, runs entirely on your own machine, and is downloaded straight from
+         the Nova download server.</p>
+    </div>
+
+    <div class="grid grid-3" id="files">
+      <div class="dl-card reco">
+        <div class="top">
+          <h3>Windows Installer</h3>
+          <span class="badge stable">Recommended</span>
+        </div>
+        <p>The complete setup: Nova Studio IDE, the <span class="mono">nova</span> and
+           <span class="mono">novac</span> commands, PATH setup, and <span class="mono">.nova</span>
+           file associations with the Nova icon.</p>
+        <div class="dl-meta"><span>NovaSetup.exe</span><span>~86 MB</span><span>Windows 10/11</span></div>
+        <a class="btn btn-primary" href="https://njoamxfaprwxowlhsdyg.supabase.co/functions/v1/download/novasetup" rel="noopener">Download installer</a>
+      </div>
+
+      <div class="dl-card">
+        <div class="top"><h3>Nova Studio IDE</h3></div>
+        <p>The desktop IDE as a single portable executable. Double-click to open — no installation,
+           no PATH changes. Best if you just want to write code right now.</p>
+        <div class="dl-meta"><span>NovaStudio.exe</span><span>~40 MB</span><span>Portable</span></div>
+        <a class="btn btn-ghost" href="https://njoamxfaprwxowlhsdyg.supabase.co/functions/v1/download/novadd" rel="noopener">Download IDE</a>
+      </div>
+
+      <div class="dl-card">
+        <div class="top"><h3>Console interpreter</h3></div>
+        <p>The Nova runtime alone, for running <span class="mono">.nova</span> files from a terminal
+           without the IDE. Includes the compiler and the interactive prompt.</p>
+        <div class="dl-meta"><span>nova.exe</span><span>~11.5 MB</span><span>Command line</span></div>
+        <a class="btn btn-ghost" href="https://njoamxfaprwxowlhsdyg.supabase.co/functions/v1/download/update" rel="noopener">Download console</a>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:26px;">
+      <strong>Where these files come from.</strong> Every button above downloads from the Nova download
+      server, not from this page's host — the site itself is only HTML, CSS and the icon, so it stays small
+      and your browser always receives the current build. Each file arrives with its proper name
+      (<span class="mono">NovaSetup.exe</span>, <span class="mono">NovaStudio.exe</span>,
+      <span class="mono">nova.exe</span>); nothing else needs to be downloaded.
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="versions">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Release 0.4</span>
+      <h2>All versions</h2>
+      <p>Every published release of Nova, newest first. v0.4 is the current stable line.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Version</th><th>Status</th><th>Release</th><th>What's in it</th><th>Download</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="mono">0.4.0</td>
+            <td><span class="badge stable">Stable</span></td>
+            <td>Current</td>
+            <td>A real lexer, parser and type checker with caret diagnostics; typed variables with inference
+                and nullable <span class="mono">String?</span> values; <span class="mono">if</span> /
+                <span class="mono">else if</span> / <span class="mono">else</span>,
+                <span class="mono">for</span> / <span class="mono">while</span> with
+                <span class="mono">break</span> and <span class="mono">continue</span>; functions with types,
+                defaults, recursion and lambdas; lists, maps and sets with
+                <span class="mono">sort</span> / <span class="mono">filter</span> /
+                <span class="mono">map</span> / <span class="mono">reduce</span>; a maths engine with
+                statistics, matrices, symbolic algebra, calculus and equation solving; a compiler that
+                matches the interpreter; Nova Studio IDE and installer.</td>
+            <td><a href="https://njoamxfaprwxowlhsdyg.supabase.co/functions/v1/download/novasetup" rel="noopener">NovaSetup.exe</a></td>
+          </tr>
+          <tr>
+            <td class="mono">0.3.0</td>
+            <td><span class="badge pre">Previous</span></td>
+            <td>Superseded</td>
+            <td>Native Nova syntax (brace blocks), Nova Studio IDE with completion and the Nova Assist
+                panel, compiler, Build EXE, drawing &amp; overlay helpers, equation solver,
+                process lookups, installer with PATH + file associations.</td>
+            <td><span style="color:var(--faint)">Install 0.4 instead</span></td>
+          </tr>
+          <tr>
+            <td class="mono">0.2.x</td>
+            <td><span class="badge pre">Preview</span></td>
+            <td>Earlier</td>
+            <td>Desktop IDE era: solution folders, Visual Studio–style explorer, Run / Compile / Build,
+                local assistant and web search. Syntax still accepted the older indentation form.</td>
+            <td><span style="color:var(--faint)">Not published separately</span></td>
+          </tr>
+          <tr>
+            <td class="mono">0.1.x</td>
+            <td><span class="badge pre">Preview</span></td>
+            <td>First build</td>
+            <td>The original interpreter and compiler prototype: <span class="mono">say</span>,
+                <span class="mono">let</span>, the solver, and basic drawing helpers.</td>
+            <td><span style="color:var(--faint)">Not published separately</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="sub" style="margin-top:18px;font-size:0.9rem;color:var(--faint);">
+      The 0.1 and 0.2 previews were development milestones and were never uploaded as separate
+      downloads — the installer above always contains the newest stable build. Version numbers follow
+      <span class="mono">major.minor.patch</span>.
+    </p>
+  </div>
+</section>
+
+<section class="section" id="install">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>How to install Nova</h2>
+      <p>Five steps from download to your first running program.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div>
+          <h3>Download the installer</h3>
+          <p>Click <a href="https://njoamxfaprwxowlhsdyg.supabase.co/functions/v1/download/novasetup" rel="noopener">NovaSetup.exe</a>
+             above and keep the file. Windows may show SmartScreen for an unsigned app — choose
+             <em>More info → Run anyway</em> if you trust the source you downloaded it from.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div>
+          <h3>Run it</h3>
+          <p>Double-click <span class="mono">NovaSetup.exe</span>. It copies Nova Studio, the
+             <span class="mono">nova</span> launcher and the <span class="mono">novac</span> interpreter to
+             <span class="mono">%LOCALAPPDATA%\Nova</span>, adds that folder to the front of your user PATH,
+             and associates <span class="mono">.nova</span> files with the Nova icon.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div>
+          <h3>Open a <em>new</em> CMD window</h3>
+          <p>Windows passes PATH to a terminal when it starts, so a window you already had open will not
+             see Nova yet. Close the old one and open a fresh Command Prompt.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div>
+          <h3>Launch the IDE</h3>
+          <p>Type the command and press Enter. Nova Studio opens as a normal desktop window.</p>
+          <div class="code"><pre><span class="k">nova</span></pre></div>
+        </div>
+      </div>
+      <div class="step">
+        <div>
+          <h3>Run a program</h3>
+          <p>Write a file called <span class="mono">main.nova</span> and run it from the console, or press
+             the <strong>Run</strong> button inside Nova Studio.</p>
+          <div class="code"><pre><span class="k">novac</span> main.nova</pre></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="ide">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>How to download the IDE</h2>
+      <p>Nova Studio is the desktop editor. There are three ways to get it — pick whichever fits you.</p>
+    </div>
+
+    <div class="grid grid-3">
+      <div class="card">
+        <h3>Option 1 — With the installer</h3>
+        <p>The easiest route. Run <span class="mono">NovaSetup.exe</span> and the IDE is installed, on your
+           PATH, and registered for <span class="mono">.nova</span> files automatically.</p>
+        <div class="code" style="margin-top:14px;"><pre><span class="c"># after installing</span>
+<span class="k">nova</span></pre></div>
+      </div>
+
+      <div class="card">
+        <h3>Option 2 — Portable EXE</h3>
+        <p>Download <span class="mono">NovaStudio.exe</span> and double-click it. Nothing is installed and
+           nothing touches your PATH — put it anywhere, including a USB stick.</p>
+        <p style="margin-top:14px;"><a class="btn btn-ghost btn-sm" href="https://njoamxfaprwxowlhsdyg.supabase.co/functions/v1/download/novadd" rel="noopener">Download NovaStudio.exe</a></p>
+      </div>
+
+      <div class="card">
+        <h3>Option 3 — Console only</h3>
+        <p>Just want to run <span class="mono">.nova</span> files from a terminal? The console interpreter
+           does that with no IDE and no install — put <span class="mono">nova.exe</span> anywhere.</p>
+        <div class="code" style="margin-top:14px;"><pre><span class="k">nova.exe</span> main.nova</pre></div>
+        <p style="margin-top:14px;"><a class="btn btn-ghost btn-sm" href="https://njoamxfaprwxowlhsdyg.supabase.co/functions/v1/download/update" rel="noopener">Download nova.exe</a></p>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:26px;">
+      <strong>What's inside the IDE:</strong> a code editor with Nova syntax highlighting and inline
+      completion, a solution/file explorer with right-click actions, Run, Compile and Build EXE,
+      an output panel for errors, and the Nova Assist chat panel (offline model plus web search) on the right.
+    </div>
+  </div>
+</section>
+
+<section class="section" id="source">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Command line</h2>
+      <p>Everything Nova does is also available from a terminal — no IDE required. These commands come
+         with the installer and cover interactive programs, including ones that read input.</p>
+    </div>
+
+    <div class="code">
+      <div class="code-head"><span class="dot"></span> Command Prompt</div>
+<pre><span class="c"># open the Nova Studio IDE</span>
+<span class="k">nova</span>
+
+<span class="c"># run a Nova program</span>
+<span class="k">novac</span> hello.nova
+
+<span class="c"># or open the interactive prompt</span>
+<span class="k">novac</span>
+
+<span class="c"># run a program that asks for input</span>
+<span class="k">novac</span> calculator.nova
+
+<span class="c"># compile a program to Python</span>
+<span class="k">novac</span> --help</pre>
+    </div>
+
+    <div class="callout warn" style="margin-top:22px;">
+      <strong>Use <span class="mono">novac</span> for process and memory programs.</strong> Programs that call
+      <span class="mono">pid()</span>, <span class="mono">read_memory()</span> or the other process builtins
+      run directly in the interpreter — the compiler leaves those out of compiled output on purpose.
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="requirements">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Requirements</h2>
+      <p>What Nova needs on your machine.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Component</th><th>Requirement</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Installer / IDE</td><td>Windows 10 or 11 (64-bit)</td><td>Everything is bundled — no Python, no dependencies to install.</td></tr>
+          <tr><td>Console interpreter</td><td>Windows 10 or 11</td><td>Runs every <span class="mono">.nova</span> program, including process and memory helpers.</td></tr>
+          <tr><td>Drawing &amp; overlays</td><td>A desktop session</td><td>Needs a real screen — unavailable over SSH or in headless sessions.</td></tr>
+          <tr><td>Process &amp; memory builtins</td><td>Windows or Linux</td><td>Read-only, and only where the OS permits inspection.</td></tr>
+          <tr><td>Disk space</td><td>About 250 MB</td><td>The installer plus the IDE and console tools it unpacks.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="verify">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Verify your install</h2>
+      <p>Run these three checks in a new CMD window.</p>
+    </div>
+    <div class="code">
+      <div class="code-head"><span class="dot"></span> Command Prompt</div>
+<pre><span class="c"># the IDE should open a window</span>
+<span class="k">nova</span>
+
+<span class="c"># the interpreter should print its version banner</span>
+<span class="k">novac</span>
+
+<span class="c"># a real program should run</span>
+<span class="k">novac</span> main.nova</pre>
+    </div>
+    <div class="output">Nova v0.4 — type 'exit' to quit</div>
+
+    <div class="callout" style="margin-top:22px;">
+      <strong>Getting <em>'nova' is not recognized</em>?</strong> You opened a CMD window that predates the
+      install. Close it completely and open a new one. If it still fails, check that
+      <span class="mono">%LOCALAPPDATA%\Nova</span> is first in your user PATH, then reopen the terminal.
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>Installed? Learn the language.</h2>
+      <p>The full Nova tutorial takes you from your first <span class="mono">show</span> to typed functions,
+         the maths engine, overlays and standalone executables.</p>
+      <a class="btn btn-primary" href="learn.html">Start the tutorial</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html"><img src="nova.ico" alt=""> Nova</a>
+        <p>A small programming language with its own syntax, a type checker, a maths engine,
+           a compiler, and the Nova Studio desktop IDE.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Get Nova</h4>
+        <a href="download.html">Download</a>
+        <a href="#versions">All versions</a>
+        <a href="#ide">Install the IDE</a>
+        <a href="#source">Command line</a>
+      </div>
+      <div class="footer-col">
+        <h4>Learn</h4>
+        <a href="learn.html">Full tutorial</a>
+        <a href="learn.html#lesson-1">Getting started</a>
+        <a href="learn.html#reference">Cheat sheet</a>
+        <a href="learn.html#next">Where to go next</a>
+      </div>
+      <div class="footer-col">
+        <h4>Project</h4>
+        <a href="index.html">Home</a>
+        <a href="#requirements">Requirements</a>
+        <a href="#verify">Verify install</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Nova. Built for people learning to program.</span>
+      <span class="mono">Nova v0.4</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

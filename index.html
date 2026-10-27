@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nova — a small programming language with types and maths</title>
+<meta name="description" content="Nova is a small programming language with its own syntax, a real parser and type checker, an interpreter, a compiler, a built-in maths engine, and the Nova Studio desktop IDE.">
+<link rel="icon" type="image/x-icon" href="nova.ico">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html"><img src="nova.ico" alt=""> Nova</a>
+    <nav class="nav">
+      <a href="index.html" class="active">Home</a>
+      <a href="download.html">Download</a>
+      <a href="learn.html">Learn</a>
+      <a href="learn.html#reference">Docs</a>
+    </nav>
+    <a class="btn btn-primary btn-sm" href="download.html">Get Nova</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Release 0.4</span>
+      <h1>Nova is a small programming language.</h1>
+      <p class="lede">
+        A beginner-friendly language with a <strong>real parser</strong>, a <strong>static type checker</strong>,
+        an interpreter, a compiler, and a built-in <strong>maths engine</strong> — plus the
+        <strong>Nova Studio</strong> desktop IDE. Write <span class="mono">.nova</span> files, run them, and
+        build standalone Windows executables.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="download.html">Download Nova 0.4</a>
+        <a class="btn btn-ghost" href="learn.html">Learn Nova</a>
+      </div>
+      <p class="hero-note">Free · Windows 10/11 · One installer, nothing else to set up</p>
+    </div>
+
+    <div class="code">
+      <div class="code-head"><span class="dot"></span> hello.nova</div>
+<pre><span class="c"># Nova's own words, typed and checked before it runs</span>
+<span class="k">let</span> name: <span class="k">String</span> = <span class="s">"Nova"</span>
+<span class="k">show</span> <span class="s">"Hello, "</span> + name
+
+<span class="k">fn</span> <span class="f">greet</span>(who, greeting = <span class="s">"Hello"</span>) -&gt; <span class="k">String</span> {
+    <span class="k">return</span> greeting + <span class="s">", "</span> + who + <span class="s">"!"</span>
+}
+
+<span class="k">for</span> i <span class="k">in</span> <span class="n">1</span>..<span class="n">3</span> {
+    <span class="k">show</span> <span class="f">greet</span>(<span class="s">"Nova "</span> + <span class="k">str</span>(i))
+}
+
+<span class="k">show</span> math.<span class="f">mean</span>([<span class="n">4</span>, <span class="n">8</span>, <span class="n">12</span>, <span class="n">16</span>])
+<span class="k">solve</span> <span class="n">2</span>*x + <span class="n">4</span> = <span class="n">14</span></pre>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="features">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">The package</span>
+      <h2>What you get</h2>
+      <p>A language, a runtime, a compiler and a desktop IDE — all in a single Windows installer.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="card">
+        <span class="num">01</span>
+        <h3>A real language engine</h3>
+        <p>Nova reads your file into tokens, a syntax tree and a typed program. No string rewriting — and
+           when something is wrong it shows the line, the exact spot, and a hint.</p>
+      </div>
+      <div class="card">
+        <span class="num">02</span>
+        <h3>Types that help</h3>
+        <p>Write <span class="mono">let score: Int = 100</span> when the type matters, or let Nova infer it.
+           <span class="mono">String?</span> values must be checked before use, and mistakes are caught
+           before the program starts.</p>
+      </div>
+      <div class="card">
+        <span class="num">03</span>
+        <h3>Collections that work</h3>
+        <p>Lists, maps and sets with the operations programs actually need:
+           <span class="mono">sort</span>, <span class="mono">filter</span>, <span class="mono">map</span>,
+           <span class="mono">reduce</span>, <span class="mono">join</span>, <span class="mono">slices</span>
+           and short lambdas like <span class="mono">n =&gt; n * 2</span>.</p>
+      </div>
+      <div class="card">
+        <span class="num">04</span>
+        <h3>Maths built in</h3>
+        <p>Statistics, trigonometry, matrices and vectors — plus a symbolic engine:
+           <span class="mono">simplify</span>, <span class="mono">derivative</span>,
+           <span class="mono">integral</span> and equation solving, exactly where it can be.</p>
+      </div>
+      <div class="card">
+        <span class="num">05</span>
+        <h3>Nova Studio IDE</h3>
+        <p>A native desktop editor with a file explorer, syntax highlighting, code completion,
+           Run, Compile and Build EXE, plus an offline AI assistant.</p>
+      </div>
+      <div class="card">
+        <span class="num">06</span>
+        <h3>Windows programs &amp; overlays</h3>
+        <p>Build a standalone EXE with nothing else installed, or draw into a window and run transparent,
+           always-on-top, click-through overlays.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">New in 0.4</span>
+      <h2>Everything the language learned</h2>
+      <p>0.4 is a new engine underneath the same beginner-friendly words.</p>
+    </div>
+    <div class="grid grid-2">
+      <div>
+        <ul>
+          <li><strong>Modern syntax.</strong> <span class="mono">if / else if / else</span>,
+              <span class="mono">for i in 1..10</span>, <span class="mono">while</span>,
+              <span class="mono">break</span> and <span class="mono">continue</span> — with the old
+              <span class="mono">when</span>, <span class="mono">each</span> and <span class="mono">stop</span>
+              still accepted.</li>
+          <li><strong>Static types with inference.</strong> Annotations are promises the checker keeps;
+              unannotated values are inferred. <span class="mono">let tag: String? = nothing</span> works with
+              <span class="mono">tag ?? "none"</span> and <span class="mono">if tag != nothing</span>.</li>
+          <li><strong>Functions with defaults, recursion and lambdas.</strong>
+              <span class="mono">fn area(w: Float, h = 2) -&gt; Float</span>, and one-line
+              <span class="mono">n =&gt; n * 2</span> functions for
+              <span class="mono">filter</span>, <span class="mono">map</span> and
+              <span class="mono">sort</span>.</li>
+          <li><strong>Helpful errors.</strong> Every diagnostic names the file, line and column, prints the
+              source line under a caret, and suggests a fix — including
+              <span class="mono">did you mean 'push'?</span>.</li>
+          <li><strong>A compiler that agrees.</strong> Compiled programs print exactly what the interpreter
+              prints, maths engine included; the memory builtins are still refused on purpose.</li>
+        </ul>
+      </div>
+      <div class="code">
+        <div class="code-head"><span class="dot"></span> maths.nova</div>
+<pre><span class="k">let</span> values = [<span class="n">4</span>, <span class="n">8</span>, <span class="n">12</span>, <span class="n">16</span>]
+<span class="k">show</span> math.<span class="f">mean</span>(values)        <span class="c"># 10</span>
+<span class="k">show</span> math.<span class="f">stddev</span>(values)      <span class="c"># 4.472135955</span>
+
+<span class="k">let</span> x = <span class="k">solve</span>(<span class="n">3</span>*x + <span class="n">9</span> == <span class="n">24</span>)
+<span class="k">show</span> x                        <span class="c"># 5</span>
+<span class="k">show</span> math.<span class="f">simplify</span>(<span class="s">"2*x + 3*x"</span>)        <span class="c"># 5*x</span>
+<span class="k">show</span> math.<span class="f">derivative</span>(<span class="s">"x^3 + 2*x"</span>, <span class="s">"x"</span>) <span class="c"># 3*x^2 + 2</span>
+<span class="k">show</span> math.<span class="f">integral</span>(<span class="s">"x^2"</span>, <span class="n">0</span>, <span class="n">3</span>)       <span class="c"># 9</span>
+
+<span class="k">show</span> math.<span class="f">matmul</span>([[<span class="n">1</span>, <span class="n">2</span>], [<span class="n">3</span>, <span class="n">4</span>]],
+              [[<span class="n">5</span>, <span class="n">6</span>], [<span class="n">7</span>, <span class="n">8</span>]])   <span class="c"># [[19, 22], [43, 50]]</span></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Up and running in three steps</h2>
+      <p>The installer sets up the IDE, the console interpreter, your PATH, and
+         <span class="mono">.nova</span> file associations.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div>
+          <h3>Run the installer</h3>
+          <p>Download <span class="mono">NovaSetup.exe</span> and run it. It installs Nova Studio and the
+             command tools to <span class="mono">%LOCALAPPDATA%\Nova</span> and puts that folder first on
+             your user PATH.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div>
+          <h3>Open a new CMD window</h3>
+          <p>Type <span class="mono">nova</span> to launch the IDE. Existing terminal windows keep the old
+             PATH, so the new window matters.</p>
+          <div class="code"><pre><span class="k">nova</span></pre></div>
+        </div>
+      </div>
+      <div class="step">
+        <div>
+          <h3>Write and run your first program</h3>
+          <p>Create a file named <span class="mono">main.nova</span>, then run it with the console
+             interpreter — or press Run inside Nova Studio.</p>
+          <div class="code"><pre><span class="k">novac</span> main.nova</pre></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>Get Nova 0.4</h2>
+      <p>Download the Windows installer straight from the Nova server, or read the tutorial first and
+         learn the language from the ground up.</p>
+      <div class="hero-actions" style="justify-content:center;">
+        <a class="btn btn-primary" href="https://njoamxfaprwxowlhsdyg.supabase.co/functions/v1/download/novasetup" rel="noopener">Download installer</a>
+        <a class="btn btn-ghost" href="learn.html">Read the tutorial</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html"><img src="nova.ico" alt=""> Nova</a>
+        <p>A small programming language with its own syntax, a type checker, a maths engine,
+           a compiler, and the Nova Studio desktop IDE.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Get Nova</h4>
+        <a href="download.html">Download</a>
+        <a href="download.html#versions">All versions</a>
+        <a href="download.html#ide">Install the IDE</a>
+        <a href="download.html#source">Command line</a>
+      </div>
+      <div class="footer-col">
+        <h4>Learn</h4>
+        <a href="learn.html">Full tutorial</a>
+        <a href="learn.html#lesson-1">Getting started</a>
+        <a href="learn.html#reference">Cheat sheet</a>
+        <a href="learn.html#next">Where to go next</a>
+      </div>
+      <div class="footer-col">
+        <h4>Project</h4>
+        <a href="index.html#features">Features</a>
+        <a href="download.html#requirements">Requirements</a>
+        <a href="download.html#verify">Verify install</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Nova. Built for people learning to program.</span>
+      <span class="mono">Nova v0.4</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
